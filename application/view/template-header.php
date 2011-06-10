@@ -77,7 +77,7 @@
                       <a href="<?=url::page('admin/login'); ?>" class="utilLogin">Login</a>
                     <? } ?>
                       <a href="<?=url::page('page/about'); ?>" class="utilAbout">About</a>
-                    <!--<a href="<?=url::page('page/help'); ?>" class="utilHelp">Help</a>-->
+                 	  <a href="#" class="utilHelp help">Help</a>
                 </div>
                 <div id="header-search" class="search-box utility-search last right">
                     <form id="main-search-form" action="<?=url::page('page/search'); ?>" method="post">

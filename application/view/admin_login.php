@@ -52,7 +52,11 @@
         <div class="span-7 last right">
             <input type="submit" class="button" tabindex="3" name="addContact" value="Login" />
         </div>
-    </div> <a href="<?= url::page("admin/lost/") ?>" title="Password Lost and Found">Lost your password?</a>
+    </div> 
+	<div class="red">
+		<p>Please remember that this is a beta release, if you have any issues click the help link or the bug at the bottom of the page.</p>
+	</div>
+<a href="<?= url::page("admin/lost/") ?>" title="Password Lost and Found">Lost your password?</a>
     </div>
    </form>
 </div>

@@ -1,6 +1,6 @@
 <? load::view('template-header', array('title' => 'Report a Bug!')); ?>
 <div class="span-21 last content-section">
-    <form method="post" action="addressbook.adampatterson.ca/bugs/">
+    <form method="post" action="http://addressbook.adampatterson.ca/bugs/">
         <input name="key_hash" type="hidden" value="<?= md5("addressbook".VERSION) ?>"/>
         <input name="specs" type="hidden" value="<?= $_SERVER['HTTP_USER_AGENT'] ?>"/>
         <div class="span-16">
