@@ -16,7 +16,7 @@ $singe_contacts = $contacts_table->get($contact->id);
 ?>
 
 <h3 class="left">
-  <?= $contact->firstname.' '.$contact->lastname; ?>
+  <?= $contact->salutation. ' '.$contact->firstname.' '.$contact->lastname; ?>
 </h3>
 <span class='actionAdd'><a href="<?php echo url::page("admin/update/{$contact->id}"); ?> ">Edit</a> <a href="<?php echo url::page("admin/delete/{$contact->id}"); ?>" class="red">Delete</a></span>
 <hr/>
@@ -69,6 +69,13 @@ $singe_contacts = $contacts_table->get($contact->id);
                     ?>
             <span class="postal-code">
             <?= $contact->postalcode; ?>
+            </span>
+             <?
+                    }
+                    if (isset($contact->postbox)) {
+                    ?>
+            <span class="post-box">
+            <?= $contact->postbox; ?>
             </span>
             <?
                     }
@@ -180,7 +187,26 @@ $singe_contacts = $contacts_table->get($contact->id);
               		endif;
                 endforeach; ?>
       </div>
-    </div>
+      <div class="span-7 last">
+        <h6>Other Address:</h6>
+        <? 
+                // Loop Other Address
+                foreach ($singe_contacts as $value):
+                    if ($value->type == 'address'):
+
+							// Get the message String
+							$rawString = $value->value;
+
+							// Split the string into pieces for processing
+							$pieces = explode("\n", $rawString);
+
+							// Replace the \n or add a <br /> if you like.
+							$other_address = implode("<br />", $pieces);
+
+					        echo $other_address ; ?><br/><br/>
+				        <? endif;
+	                endforeach; ?>
+    </div>   </div>
     <div class="prepend-6 span-15 last">
     	<h6>Map:</h6>
       <? //@todo move the javascript into the page header?>

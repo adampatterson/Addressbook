@@ -23,6 +23,23 @@
         </div>
       </div>
       <div class="span-10 form-row last">
+        <div class="span-2 right small"> <strong>Salutation</strong> </div>
+         <div class="span-7 small-radio">
+          <fieldset>
+            <input name="salutation" type="radio" value="Mr." />
+            <label> Mr. </label>
+            <input name="salutation" type="radio" value="Mrs."/>
+            <label> Mrs. </label>
+            <input name="salutation" type="radio" value="Ms."/>
+            <label> Ms. </label>
+            <input name="salutation" type="radio" value="Dr."/>
+            <label> Dr. </label>
+            <input name="salutation" type="radio" value="" checked="checked" />
+            <label> None </label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="span-10 form-row last">
         <div class="span-2 right small"> <strong>Company Name</strong> </div>
         <div class="span-7 last">
           <input name="company_name" type="text" class="text" id="cName" tabindex="3" value="" />
@@ -75,6 +92,12 @@
         <div class="span-2 right small"> <strong>Postal Code</strong> </div>
         <div class="span-7 last">
           <input name="postalcode" type="text" class="text" id="postalcode" tabindex="7" value="" />
+        </div>
+      </div>
+      <div class="span-10 form-row last">
+        <div class="span-2 right small"> <strong>Post Box</strong> </div>
+        <div class="span-7 last">
+          <input name="postbox" type="text" class="text" id="postbox" tabindex="7" value="" />
         </div>
       </div>
       <div class="span-10 form-row last">
@@ -167,7 +190,14 @@
         </div>
         <!--<div class="span-1 actions last"> <img src="images/icons/20-check.png" width="20" height="20" alt="Check" /> </div>-->
       </div>
-    </div>
+		<div class="span-10 form-row last">
+			<div class="span-2 right small"> <strong>Other Address</strong> </div>
+			<div class="span-7">
+				<textarea name="other_address[0]" rows="6" cols="15" class="text"></textarea>
+			</div>
+			<div class="span-1 actions last"> <a href="#" onClick="addAddress(); return false;"><img src="<?=BASE_URL; ?>assets/images/icons/20-add-ball.png" width="20" height="20" alt="Add" /></a> 					</div>
+      </div>      </div>
+		<div id="addressTxt"> </div>
     <div class="span-10 last">
       <h6>Misc Info:</h6>
       <hr/>

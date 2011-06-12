@@ -9,11 +9,13 @@ class post_controller {
 		// Grab the submited Data
 	  $firstname =       input::post('firstname');
 		$lastname = 	     input::post('lastname');
+		$salutation = 	     input::post('salutation');
 		$title =	 	       input::post('title');
 		$company_name =    input::post('company_name');
 		$address = 		     input::post('address');
 		$address2 = 	     input::post('address2');
-		$postalcode = 	   input::post('postalcode');
+		$postalcode = 	   	input::post('postalcode');
+		$postbox = 	   		input::post('postbox');
 		$city = 		       input::post('city');
 		$province = 	     input::post('province');
 		$country = 		     input::post('country');
@@ -22,6 +24,7 @@ class post_controller {
 		$emailList = 	     input::post('email');
 		$phoneList = 	     input::post('phone');
 		$imList = 		     input::post('im');
+		$addressList = 		input::post('other_address');
 		$birth_day = 	     input::post('bDay');
 		$birth_month =  	 input::post('bMonth');
 		$birth_year = 	   input::post('bYear');
@@ -75,13 +78,15 @@ class post_controller {
 		
 		// Insert Post into Database
 		$row = $address_table->insert(array(
- 	    'firstname'=>$firstname, 
+ 	    	'firstname'=>$firstname, 
 			'lastname'=>$lastname, 
+			'salutation'=>$salutation, 
 			'title'=>$title,
 			'company_name'=>$company_name,
 			'address'=>$address, 
 			'address2'=>$address2, 
 			'postalcode'=>$postalcode, 
+			'postbox'=>$postbox, 
 			'city'=>$city, 
 			'province'=>$province,
 			'country'=>$country, 
@@ -130,6 +135,18 @@ class post_controller {
 					));
 				}
             } 
+
+		foreach ($addressList as $value) {
+			if (!$value =='') {
+				// Insert Post into Database
+				$contacts_table->insert(array(
+		 	        'value'=>$value, 
+					'type'=>'address',
+					'label'=>'address',
+					'address_id'=>$row->id
+					));
+				}
+            }
 			
 		// Select Profile Table
 		$profile_table = db('profile_photo');

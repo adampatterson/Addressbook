@@ -10,11 +10,13 @@ public function action_contact($id){
     // Grab the submited Data
     $firstname =       input::post('firstname');
     $lastname =        input::post('lastname');
+	$salutation = 	     input::post('salutation');
     $title =           input::post('title');
     $company_name =    input::post('company_name');
     $address =         input::post('address');
     $address2 =        input::post('address2');
     $postalcode =      input::post('postalcode');
+	 $postbox = 	   input::post('postbox');
     $city =            input::post('city');
     $province =        input::post('province');
     $country =         input::post('country');
@@ -23,6 +25,7 @@ public function action_contact($id){
     $emailList =       input::post('email');
     $phoneList =       input::post('phone');
     $imList =          input::post('im');
+	$addressList = 	   input::post('other_address');
     $birth_day =       input::post('bDay');
     $birth_month =     input::post('bMonth');
     $birth_year =      input::post('bYear');
@@ -76,13 +79,15 @@ public function action_contact($id){
 		
   // Insert Post into Database
 		$table->update(array(
-	    'firstname'=>$firstname, 
+	    	'firstname'=>$firstname, 
 			'lastname'=>$lastname, 
+			'salutation'=>$salutation, 
 			'title'=>$title,
 			'company_name'=>$company_name,
 			'address'=>$address, 
 			'address2'=>$address2, 
 			'postalcode'=>$postalcode, 
+			'postbox'=>$postbox, 
 			'city'=>$city, 
 			'province'=>$province,
 			'country'=>$country, 
@@ -177,6 +182,38 @@ public function action_contact($id){
 					}
 	            }
 			}
+			
+		foreach ($addressList as $value) {
+			
+			echo '<pre>';
+			print_r($value);
+			echo '</pre>';
+			
+			// If a value is set then move on.
+			if (!$value['0'] == ''){
+				// Has it been deleted?
+				if (isset($value['1'])){
+					$contacts_table->delete()
+						->where('contactid','=', $value['2'])
+						->execute();
+				// Does this address already exist?
+				} else if (isset($value['2'])) {
+					$contacts_table->update(array(
+			 	        'value'=>$value['0'], 
+						'label'=>'address'
+						))
+						->where('contactid','=',$value['2'])
+						->execute();
+				} else {
+					// Insert new contact
+					$contacts_table->insert(array(
+			 	        'value'=>$value['0'], 
+						'type'=>'address', 
+						'label'=>'address',
+						'address_id'=>$id));
+					}
+	            }
+			}
 
     // Select Profile Table
     $profile_table = db('profile_photo');
@@ -235,7 +272,7 @@ public function action_contact($id){
 		// Get the current Time stamp
 		$date = time();
 			
-		if (!$notes == '') {
+		if (!$notes == ' ') {
 			// Insert Notes into Database
 			$comment_table->update(array(
 				'comment_date'=>$date,

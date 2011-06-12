@@ -49,4 +49,23 @@
 	
 	function removeIm(id) {
 		$(id).remove();
+		}	
+		
+
+	// Append Address
+	function addAddress() {
+		var id = document.getElementById("id").value;
+			$("#addressTxt").append("<div class='span-10 form-row last' id='row" + id + "'><div class='span-2 right small'> <strong>Other Address</strong> </div><div class='span-7'><textarea name='other_address[" + id + "]' rows='6' cols='15'></textarea></div><div class='span-1 actions last'><a href='#' onClick='removePhone(\"#row" + id + "\"); return false;'><img src='assets/images/icons/20-red-minus-ball.png' width='20' height='20' alt='Minus' /></a></div></div>");
+
+
+		$('#row' + id).highlightFade({
+			speed:1000
+			});
+
+		id = (id - 1) + 2;
+		document.getElementById("id").value = id;
+		}
+
+	function removeAddress(id) {
+		$(id).remove();
 		}

@@ -158,9 +158,9 @@ public function grouplist($gid='', $current_page=1) {
       url::redirect('admin/login'); 
     }
 
-	// load::helper('class_geoip');
-	 //$class_geoip = new geoip();
-	 $class_geoip = '';
+   // load::helper('class_geoip');
+    //$class_geoip = new geoip();
+    $class_geoip = '';
 
     // @todo only bring back one group ID
     $groups = db('groups')

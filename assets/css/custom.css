@@ -68,7 +68,7 @@ input.title {
 	font-size: 1.5em;
 	}
 
-textarea.text {
+#addContact .markItUp textarea.text {
 	width: 600px;
 	height: 150px;
 	}
@@ -401,8 +401,8 @@ margin-left:15px;}
 	color: #F00;
 	}
 
-.birthdaySelector {
-	/*width: auto;*/
+select.birthdaySelector {
+	width: 37%;
 	}
 
 .birthdayText {
@@ -721,4 +721,13 @@ div {
 	overflow: hidden;
 	}
 }
+/* @end */
+
+/* @group Add Contact */
+
+#addContact textarea { 	
+	width: 260px;
+	height: 150px;
+}
+
 /* @end */
