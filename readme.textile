@@ -1,4 +1,4 @@
 h1. AddressBook
 
-"Home()":"Your text to link here...(Home)":http://www.adampatterson.ca/work/addressbook/
+"Home(Home)":http://www.adampatterson.ca/work/addressbook/
 "Get Support(Get Support)":http://adampatterson.tenderapp.com/
