@@ -2,7 +2,7 @@
 class contacts_controller {
 	/* View Article Page */
 	public function view($id) {
-    if(!user::valid()) { url::redirect('admin/login'); }
+	    core::valid_user();
     
 		// Select Database Table
 		$table = db('addressbook');
@@ -10,8 +10,8 @@ class contacts_controller {
 		// Get Contact From Database
 		$contact = $table->select('id','=',$id);
 		
-    $groups_table = db('groups');
-    $group = $groups_table->select('gid','=',$contact[0]->gid);
+	    $groups_table = db('groups');
+	    $group = $groups_table->select('gid','=',$contact[0]->gid);
 
 		// Select Database Table
 		$comments_table = db('comments');

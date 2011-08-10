@@ -5,7 +5,7 @@
 class update_controller {
 	
 public function action_contact($id){
-     if(!user::valid()) { url::redirect('admin/login'); }
+     core::valid_user();
       
     // Grab the submited Data
     $firstname =       input::post('firstname');
@@ -16,7 +16,7 @@ public function action_contact($id){
     $address =         input::post('address');
     $address2 =        input::post('address2');
     $postalcode =      input::post('postalcode');
-	 $postbox = 	   input::post('postbox');
+	$postbox = 	   		input::post('postbox');
     $city =            input::post('city');
     $province =        input::post('province');
     $country =         input::post('country');
@@ -263,7 +263,7 @@ public function action_contact($id){
 		} // END Action Update
 	
 	public function action_comment($contactid, $commentid){
-	  if(!user::valid()) { url::redirect('admin/login'); }
+	  core::valid_user();
 		$notes = 		input::post('notes');
 		
 		// Select Comments Table
@@ -293,35 +293,32 @@ public function action_contact($id){
 		} // END Function Action Update Comment
 		
 	public function action_group($gid){
-    if(!user::valid()) { url::redirect('admin/login'); }
-    $group_name = input::post('group_name');
+	    core::valid_user();
+	    $group_name = input::post('group_name');
     
-	  // Select Database Table
-    $table = db('groups');
+		  // Select Database Table
+	    $table = db('groups');
     
-    // Insert Post into Database
-    $table->update(array(
-      'groups'=>$group_name, 
-      ))
-    ->where('gid','=',$gid)
-    ->execute();
+	    // Insert Post into Database
+	    $table->update(array(
+	      'groups'=>$group_name, 
+	      ))
+	    ->where('gid','=',$gid)
+	    ->execute();
       
-   // Redirect to Groups
-   url::redirect('page/groups/');
-   } // END Function Action Update Group
+	   // Redirect to Groups
+	   url::redirect('page/groups/');
+	   } // END Function Action Update Group
    
   public function action_user(){
-    if(!user::valid()) { url::redirect('admin/login'); }
+   core::valid_user();
     
 
     }
     
 	public function action_profile(){
 	
-		if(!user::valid()) {
-			note::set("error","session",NOTE_SESSION);
-			url::redirect('admin/login'); 
-			}
+		core::valid_user();
 		
 	  	$email =       			input::post('email');
 		$password =	 	       	input::post('password');

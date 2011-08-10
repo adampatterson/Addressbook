@@ -1,7 +1,7 @@
 <?php
 class delete_controller {
 	public function action_comment($contactid, $commentid=''){
-    if(!user::valid()) { url::redirect('admin/login'); }
+	    core::valid_user();
     
 		// Select Comments Table
 		$comment_table = db('comments');
@@ -19,7 +19,7 @@ class delete_controller {
 		
 		
 	public function action_contact($contact_id='') {
-    if(!user::valid()) { url::redirect('admin/login'); }
+	    core::valid_user();
     
 		// @todo delete all comments attached to the user ID at the same time.
 		$comments_table = db('comments');
@@ -45,28 +45,28 @@ class delete_controller {
 		url::redirect('page/listing/');
 		} // END Function Action Delete
 		
-  public function action_group($group_id='') {
-    if(!user::valid()) { url::redirect('admin/login'); }
+	public function action_group($group_id='') {
+		core::valid_user();
       
-    // @todo search all contacts with the Group ID and set the GID to #1 for unlisted
+	    // @todo search all contacts with the Group ID and set the GID to #1 for unlisted
 
-    // Update contacts to UnGrouped
-    $contacts_table = db('addressbook');
-    $contacts_table->update(array(
-      'gid'=>'1',
-      ))
-    ->where('gid','=',$group_id)
-    ->execute();
+	    // Update contacts to UnGrouped
+	    $contacts_table = db('addressbook');
+	    $contacts_table->update(array(
+	      'gid'=>'1',
+	      ))
+	    ->where('gid','=',$group_id)
+	    ->execute();
 
-    // Delete
-    $group_table = db('groups');
+	    // Delete
+	    $group_table = db('groups');
 
-    $group_table->delete()
-        ->where('gid','=', $group_id)
-        ->execute();
+	    $group_table->delete()
+	        ->where('gid','=', $group_id)
+	        ->execute();
 
-    // Redirect to home page
-    url::redirect('page/groups');
-    } // END Function Action Delete
+	    // Redirect to home page
+	    url::redirect('page/groups');
+	    } // END Function Action Delete
 		
 	}

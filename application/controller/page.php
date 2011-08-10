@@ -1,72 +1,68 @@
 <?php
 class page_controller {
 
-  public function listing($current_page=1, $group='', $sort='asc') {
+	public function listing($current_page=1, $group='', $sort='asc') {
+		core::valid_user();
+	    $members_table = db('users');
+	    $total_members = $members_table->count()->execute();
 
-    $members_table = db('users');
-    $total_members = $members_table->count()->execute();
+	    if ($total_members == '') {
+	      url::redirect('admin/new_user');  
+	    }
 
-    if ($total_members == '') {
-      url::redirect('admin/new_user');  
-    }
-
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+	    if(!user::valid()) {
+	      note::set("error","session",NOTE_SESSION);
+	      url::redirect('admin/login'); 
+	      }
     
-    // @todo sort by letter
-    // @todo sort by group
-    // @todo sort direction
-    // @todo view in grid
+	    // @todo sort by letter
+	    // @todo sort by group
+	    // @todo sort direction
+	    // @todo view in grid
 
-    $address_table = db('addressbook');
-    $total = $address_table->count()->execute();
-    $page = new pagination($total, $current_page,25);
+	    $address_table = db('addressbook');
+	    $total = $address_table->count()->execute();
+	    $page = new pagination($total, $current_page,25);
 
-    // @todo Sort ASC
-    if ($sort == 'desc'){
-      $contacts = $address_table->select('*')
-              ->order_by('firstname','DESC')
-              ->order_by('lastname','ASC')
-              ->limit($page->limit)
-              ->offset($page->min)
-              ->execute();
-      } else {
-      $contacts = $address_table->select('*')
-          ->order_by('firstname','ASC')
-          ->order_by('lastname','ASC')
-          ->limit($page->limit)
-          ->offset($page->min)
-          ->execute();
-      }
+	    // @todo Sort ASC
+	    if ($sort == 'desc'){
+	      $contacts = $address_table->select('*')
+	              ->order_by('firstname','DESC')
+	              ->order_by('lastname','ASC')
+	              ->limit($page->limit)
+	              ->offset($page->min)
+	              ->execute();
+	      } else {
+	      $contacts = $address_table->select('*')
+	          ->order_by('firstname','ASC')
+	          ->order_by('lastname','ASC')
+	          ->limit($page->limit)
+	          ->offset($page->min)
+	          ->execute();
+	      }
 
-    $groups = db('groups')
-            ->select('*')
-            ->order_by('groups','ASC')
-            ->execute();
+	    $groups = db('groups')
+	            ->select('*')
+	            ->order_by('groups','ASC')
+	            ->execute();
 
-    $contacts_table = load::model('contacts');
-    $profile_images = load::model('image');
+	    $contacts_table = load::model('contacts');
+	    $profile_images = load::model('image');
 
-    load::helper('class_alphabet');
-    $class_alphabet = new current_alphabet();
+	    load::helper('class_alphabet');
+	    $class_alphabet = new current_alphabet();
 
-    // @todo Temp
-    $group='';
-    $alpha='';
+	    // @todo Temp
+	    $group='';
+	    $alpha='';
 
-    load::view('page_listing',array('contacts'=>$contacts, 'page'=>$page, 'groups'=>$groups, 'group'=>$group, 'class_alphabet'=>$class_alphabet, 'alphabet'=>$alpha, 'contacts_table'=>$contacts_table, 'profile_images'=>$profile_images));
-  } // END Function List
+	    load::view('page_listing',array('contacts'=>$contacts, 'page'=>$page, 'groups'=>$groups, 'group'=>$group, 'class_alphabet'=>$class_alphabet, 'alphabet'=>$alpha, 'contacts_table'=>$contacts_table, 'profile_images'=>$profile_images));
+	  } // END Function List
 
 
 public function grouplist($gid='', $current_page=1) {
   
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
-    
+    core::valid_user();
     // @todo sort by letter
     // @todo sort by group
     // @todo sort direction
@@ -105,10 +101,7 @@ public function grouplist($gid='', $current_page=1) {
 
   public function alphabetical($alpha='') {
     
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
     
     // @todo sort by letter
     $address_table = db('addressbook');
@@ -134,10 +127,7 @@ public function grouplist($gid='', $current_page=1) {
 
   public function groups() {
     
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
     
     $groups_table = db('groups');
 
@@ -152,11 +142,7 @@ public function grouplist($gid='', $current_page=1) {
 
 
   public function maps($gid=''){
-    
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-    }
+	core::valid_user();
 
    // load::helper('class_geoip');
     //$class_geoip = new geoip();
@@ -174,38 +160,26 @@ public function grouplist($gid='', $current_page=1) {
 
 
   public function export(){
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
     load::view('page_export');
     }// END Function Export
 
   public function import(){
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
     
     load::view('page_import');
     }// END Function Import
 
 
   public function members(){
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
     
     load::view('page_members');
     }// END Function members
 
 
   public function help(){
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+   	core::valid_user();
         
     load::view('page_help');
     }// END Function Help
@@ -216,11 +190,7 @@ public function grouplist($gid='', $current_page=1) {
     }// END Function About
 
   public function search() {
-
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
 
     $alpha = '';
 
@@ -231,7 +201,7 @@ public function grouplist($gid='', $current_page=1) {
     $clean_string = db::clean($raw_string);
 
     // @todo Take that array and do a search
-    $searchwords = split(" ", $clean_string);
+    $searchwords = explode(" ", $clean_string);
 
     foreach($searchwords as $searchword) {
       $contacts = db::query("SELECT * FROM addressbook WHERE

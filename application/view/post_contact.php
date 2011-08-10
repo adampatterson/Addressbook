@@ -189,15 +189,16 @@
           <input name="website" type="text" class="text url" id="website" tabindex="14" value="" />
         </div>
         <!--<div class="span-1 actions last"> <img src="images/icons/20-check.png" width="20" height="20" alt="Check" /> </div>-->
-      </div>
-		<div class="span-10 form-row last">
+      </div></div>
+		<div class="span-10 last">
 			<div class="span-2 right small"> <strong>Other Address</strong> </div>
-			<div class="span-7">
+			<div class="span-7 form-row">
 				<textarea name="other_address[0]" rows="6" cols="15" class="text"></textarea>
 			</div>
 			<div class="span-1 actions last"> <a href="#" onClick="addAddress(); return false;"><img src="<?=BASE_URL; ?>assets/images/icons/20-add-ball.png" width="20" height="20" alt="Add" /></a> 					</div>
-      </div>      </div>
-		<div id="addressTxt"> </div>
+           <div id="addressTxt"> </div>
+		 </div>
+		</div>
     <div class="span-10 last">
       <h6>Misc Info:</h6>
       <hr/>

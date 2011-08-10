@@ -76,7 +76,7 @@
                     <strong><a href="<?php echo url::page("contacts/view/{$contact->id}"); ?>"><?= $contact->firstname.' '.$contact->lastname; ?></a></strong>
                 </div>
                 <div class="span-4 last editDelete">
-                    <a href="<?php echo url::page("admin/update/{$contact->id}"); ?>"><img src="<?=BASE_IMAGE; ?>icons/14-edit.png" width="14" height="14" alt="Edit" />Edit  </a>
+                    <a href="<?php echo url::page("admin/update/{$contact->id}"); ?>"><img src="<?=BASE_IMAGE; ?>icons/14-edit.png" width="14" height="14" alt="Edit" /> Edit  </a>
                     &nbsp;&nbsp;<a href="<?php echo url::page("admin/delete/{$contact->id}"); ?>"><img src="<?= BASE_IMAGE; ?>icons/14-red-minus-ball.png" width="14" height="14" alt="Delete" /> Delete</a>
                 </div>
             </div>

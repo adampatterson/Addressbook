@@ -5,11 +5,7 @@
 class admin_controller {
   
 	public function post(){
-	    
-        if(!user::valid()) {
-            note::set("error","session",NOTE_SESSION);
-            url::redirect('admin/login'); 
-            }  
+	    core::valid_user();  
 
 		$groups_table = db('groups');				
 		$groups = $groups_table->select('*')
@@ -26,7 +22,7 @@ class admin_controller {
 		}// END Function Post
 	
   public function post_group(){
-    if(!user::valid()) { url::redirect('admin/login'); }
+    core::valid_user();
     
     load::view('post_group');
     }// END Function Post Group
@@ -72,10 +68,7 @@ class admin_controller {
 		
 		
 	public function delete ($contact_id){
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    	core::valid_user();
     
 		$address_table = db('addressbook');
 		
@@ -90,10 +83,7 @@ class admin_controller {
 		
 
 	public function update_comment($contactid, $commentid) {
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    	core::valid_user();
     
 		$comment_table = db('comments');				
 		$comment = $comment_table->select('*')
@@ -108,42 +98,33 @@ class admin_controller {
 		} // END Function Update Comment
 
 
-  public function update_group($gid) {
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+	public function update_group($gid) {
+	    core::valid_user();
     
-    $group_table = db('groups');        
-    $group = $group_table->select('*')
-                  ->where('gid','=',$gid)
-                  ->execute();                    
+	    $group_table = db('groups');        
+	    $group = $group_table->select('*')
+	                  ->where('gid','=',$gid)
+	                  ->execute();                    
 
-    load::view('update_group',array('group'=>$group[0]));
-    } // END Function Update Comment
+	    load::view('update_group',array('group'=>$group[0]));
+	    } // END Function Update Comment
 		
 		
 	public function delete_comment($contactid, $commentid) {
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
-    
+	   	core::valid_user();
+   
 		$comment_table = db('comments');				
 		$comment = $comment_table->select('*')
 									->where('commentid','=',$commentid)
 									->execute();										
-							
+						
 		load::helper('class_textile');
 		$textile = new Textile();
 		load::view('delete_comment',array('comment'=>$comment[0], 'contactid'=>$contactid, 'textile'=>$textile));
 		} // END Function Update Comment
 		
   public function delete_group($group_id) {
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
+    core::valid_user();
     
     $groups_table = db('groups');        
     $group = $groups_table->select('*')
@@ -155,9 +136,7 @@ class admin_controller {
 
 
 	public function login(){
-   
-    if(user::valid()) { url::redirect('page/listing'); }
-
+	
 		load::view('admin_login'); 
 		} // END Function Login
 		
@@ -176,10 +155,7 @@ class admin_controller {
 		
 		
 	public function profile(){
-		if(!user::valid()) {
-		  note::set("error","session",NOTE_SESSION);
-		  url::redirect('admin/login'); 
-		  }
+		core::valid_user();
 		  
 		load::view('admin_profile'); 
 		} // END Function Profile
@@ -189,12 +165,9 @@ class admin_controller {
         } // END Function New User
     
 		
-  public function settings(){
-    if(!user::valid()) {
-      note::set("error","session",NOTE_SESSION);
-      url::redirect('admin/login'); 
-      }
-    
+	public function settings(){
+		core::valid_user();
+   
 		load::view('page_settings');
 		} // END Function Settings
 		

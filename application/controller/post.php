@@ -4,7 +4,7 @@
  */
 class post_controller {
 	public function action_contact (){
-    if(!user::valid()) { url::redirect('admin/login'); }
+    core::valid_user();
     
 		// Grab the submited Data
 	  $firstname =       input::post('firstname');
@@ -181,7 +181,7 @@ class post_controller {
 	
 	
 	public function action_comment($id){
-    if(!user::valid()) { url::redirect('admin/login'); }
+    core::valid_user();
     
 		$notes = 		input::post('notes');
 		
@@ -205,7 +205,7 @@ class post_controller {
 		
 		
   public function action_group (){
-    if(!user::valid()) { url::redirect('admin/login'); }
+    core::valid_user();
     
     $group_name = input::post('group_name');
     
@@ -224,7 +224,7 @@ class post_controller {
 		
 		
 	public function action_send($to_id=''){
-    if(!user::valid()) { url::redirect('admin/login'); }
+    core::valid_user();
 
 		$to_address = input::post('email_address');
         $from_address = user::email();;
@@ -288,7 +288,7 @@ class post_controller {
             // @todo get install admings email address
             $mail->from('Addressbook');
             $mail->subject('Missing Password');
-            $mail->content('<strong>Click the linnk to reset your password.</strong><br />'.$hash_address);
+            $mail->content('<strong>Click the link to reset your password.</strong><br />'.$hash_address);
             $mail->send();
 
             note::set("error","forgot",NOTE_LOST);
@@ -342,7 +342,7 @@ class post_controller {
   } // END Function action_update_user
        
   public function action_bug(){
-    if(!user::valid()) { url::redirect('admin/login'); }  
+    core::valid_user();
       
       $message =       input::post('message');
 

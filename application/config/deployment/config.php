@@ -40,11 +40,17 @@ define('MOD_REWRITE',TRUE);
 // Turn Debugging On?
 define('DEBUG',FALSE);
 
+if (DEBUG == TRUE) {
+	require_once('assets/lib/FirePHPCore/fb.php');
+	ob_start();
+}
+
 // Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
 
 // Error Log File Location
 define('ERROR_LOG_FILE','log.txt');
+
 
 /**
  * Your Application's Default Timezone

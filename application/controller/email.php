@@ -1,7 +1,7 @@
 <?php
 class email_controller {
 	public function message ($id='') {
-    if(!user::valid()) { url::redirect('admin/login'); }
+    	core::valid_user();
     
 		// Select Database Table
 		$table = db('addressbook');
