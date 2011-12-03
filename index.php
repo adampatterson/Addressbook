@@ -6,7 +6,11 @@ error_reporting(E_STRICT|E_ALL);
 //----------------------------------------------------------------------------------------------
 
 // Configuration
-define('CONFIGURATION','deployment');
+if ($_SERVER["SERVER_NAME"] == 'localhost') {
+	define('CONFIGURATION','development');
+} else {
+	define('CONFIGURATION','deployment');
+}
 
 // Dingo Location
 define('SYSTEM','system');

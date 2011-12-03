@@ -40,11 +40,6 @@ define('MOD_REWRITE',TRUE);
 // Turn Debugging On?
 define('DEBUG',FALSE);
 
-if (DEBUG == TRUE) {
-	require_once('assets/lib/FirePHPCore/fb.php');
-	ob_start();
-}
-
 // Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
 
@@ -64,7 +59,7 @@ date_default_timezone_set('America/New_York');
 config::set('autoload_library',array('db','session','user','url','pagination','benchmark','image','note','email'));
 
 /* Auto Load Helpers */
-config::set('autoload_helper',array()); 
+config::set('autoload_helper',array('core ')); 
 
 /* Sessions */
 config::set('session',array(
