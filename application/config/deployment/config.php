@@ -59,7 +59,7 @@ date_default_timezone_set('America/New_York');
 config::set('autoload_library',array('db','session','user','url','pagination','benchmark','image','note','email'));
 
 /* Auto Load Helpers */
-config::set('autoload_helper',array('core ')); 
+config::set('autoload_helper',array('core')); 
 
 /* Sessions */
 config::set('session',array(
