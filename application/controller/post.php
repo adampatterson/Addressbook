@@ -7,33 +7,34 @@ class post_controller {
     core::valid_user();
     
 		// Grab the submited Data
-	  $firstname =       input::post('firstname');
-		$lastname = 	     input::post('lastname');
-		$salutation = 	     input::post('salutation');
-		$title =	 	       input::post('title');
-		$company_name =    input::post('company_name');
-		$address = 		     input::post('address');
-		$address2 = 	     input::post('address2');
-		$postalcode = 	   	input::post('postalcode');
-		$postbox = 	   		input::post('postbox');
-		$city = 		       input::post('city');
-		$province = 	     input::post('province');
-		$country = 		     input::post('country');
-		$website = 		     input::post('website');
-		$profile = 		     input::post('profile');
-		$emailList = 	     input::post('email');
-		$phoneList = 	     input::post('phone');
-		$imList = 		     input::post('im');
-		$addressList = 		input::post('other_address');
-		$birth_day = 	     input::post('bDay');
-		$birth_month =  	 input::post('bMonth');
-		$birth_year = 	   input::post('bYear');
+	  	$firstname =       $_POST['firstname'];
+		$lastname = 	     $_POST['lastname'];
+		$salutation = 	     $_POST['salutation'];
+		$title =	 	       $_POST['title'];
+		$company_name =    $_POST['company_name'];
+		$address = 		     $_POST['address'];
+		$address2 = 	     $_POST['address2'];
+		$postalcode = 	   	$_POST['postalcode'];
+		$postbox = 	   		$_POST['postbox'];
+		$city = 		       $_POST['city'];
+		$province = 	     $_POST['province'];
+		$country = 		     $_POST['country'];
+		$website = 		     $_POST['website'];
+		//$profile = 		     $_POST['profile'];
+		$emailList = 	     $_POST['email'];
+		$phoneList = 	     $_POST['phone'];
+		$imList = 		     $_POST['im'];
+		$addressList = 		$_POST['other_address'];
+		$birth_day = 	     $_POST['bDay'];
+		$birth_month =  	 $_POST['bMonth'];
+		$birth_year = 	   $_POST['bYear'];
 		  
-		$group = 		       input::post('group');
+		$group = 		       $_POST['group'];
 		
-		$notes = 		       input::post('notes');
+		$notes = 		       $_POST['notes'];
 		$birthDateRaw =    '';
-    
+		
+
 		// Format Date
 		if (!$birth_day == "0" || !$birth_month == "0") {
 			$birthDateRaw = 	mktime(0, 0, 0, $birth_month, $birth_day, $birth_year);
@@ -62,7 +63,7 @@ class post_controller {
       $profile_name = 'default.jpg';
         
     }
-   
+
 		load::helper('class_google');
 		
 		$google_geo = new google();
@@ -71,7 +72,7 @@ class post_controller {
 
 		$lng = $geo_array[0];
 		$lat = $geo_array[1];   
-  
+
 
 		// Select Database Table
 		$address_table = db('addressbook');
@@ -80,14 +81,14 @@ class post_controller {
 		$row = $address_table->insert(array(
  	    	'firstname'=>$firstname, 
 			'lastname'=>$lastname, 
-			'salutation'=>$salutation, 
+			//'salutation'=>$salutation,
 			'title'=>$title,
 			'company_name'=>$company_name,
-			'address'=>$address, 
+			'address'=>$address,
 			'address2'=>$address2, 
-			'postalcode'=>$postalcode, 
-			'postbox'=>$postbox, 
-			'city'=>$city, 
+			'postalcode'=>$postalcode,
+			//'postbox'=>$postbox, 
+			'city'=>$city,
 			'province'=>$province,
 			'country'=>$country, 
 			'website'=>$website, 
@@ -96,7 +97,7 @@ class post_controller {
 			'lng'=>$lng,
 			'birthdate'=>$birthDateRaw
 			));
-	
+			
 		// Select Contacts Table
 		$contacts_table = db('contacts');
 		
