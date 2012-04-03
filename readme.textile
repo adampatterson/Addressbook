@@ -1,4 +1,4 @@
 h1. AddressBook
 
 "Home(Home)":http://www.adampatterson.ca/work/addressbook/
-"Get Support(Get Support)":http://adampatterson.tenderapp.com/
+"Get Support(Get Support)":https://github.com/adampatterson/Addressbook/issues/
