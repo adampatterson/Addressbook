@@ -4,7 +4,7 @@
  */
 class post_controller {
 	public function action_contact (){
-    core::valid_user();
+    valid_user();
     
 		// Grab the submited Data
 	  	$firstname =       $_POST['firstname'];
@@ -182,7 +182,7 @@ class post_controller {
 	
 	
 	public function action_comment($id){
-    core::valid_user();
+    valid_user();
     
 		$notes = 		input::post('notes');
 		
@@ -206,7 +206,7 @@ class post_controller {
 		
 		
   public function action_group (){
-    core::valid_user();
+    valid_user();
     
     $group_name = input::post('group_name');
     
@@ -225,7 +225,7 @@ class post_controller {
 		
 		
 	public function action_send($to_id=''){
-    core::valid_user();
+    valid_user();
 
 		$to_address = input::post('email_address');
         $from_address = user::email();;
@@ -343,7 +343,7 @@ class post_controller {
   } // END Function action_update_user
        
   public function action_bug(){
-    core::valid_user();
+    valid_user();
       
       $message =       input::post('message');
 

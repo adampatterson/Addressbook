@@ -4,7 +4,7 @@ class api_controller {
 		//@todo accept a contact ID and return all data with it	
 		
 	public function json($group=''){
-	    core::valid_user();
+	    valid_user();
     
 		//@todo generate json structure for google maps
 		$table = db('addressbook');
@@ -27,7 +27,7 @@ class api_controller {
 
 		
 	public function xml($group=''){
-	    core::valid_user();
+	    valid_user();
     
 		//@todo generate xml structure
 		$table = db('addressbook');

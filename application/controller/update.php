@@ -5,7 +5,7 @@
 class update_controller {
 	
 public function action_contact($id){
-     core::valid_user();
+     valid_user();
       
     // Grab the submited Data
     $firstname =       input::post('firstname');
@@ -263,7 +263,7 @@ public function action_contact($id){
 		} // END Action Update
 	
 	public function action_comment($contactid, $commentid){
-	  core::valid_user();
+	  valid_user();
 		$notes = 		input::post('notes');
 		
 		// Select Comments Table
@@ -293,7 +293,7 @@ public function action_contact($id){
 		} // END Function Action Update Comment
 		
 	public function action_group($gid){
-	    core::valid_user();
+	    valid_user();
 	    $group_name = input::post('group_name');
     
 		  // Select Database Table
@@ -311,14 +311,14 @@ public function action_contact($id){
 	   } // END Function Action Update Group
    
   public function action_user(){
-   core::valid_user();
+   valid_user();
     
 
     }
     
 	public function action_profile(){
 	
-		core::valid_user();
+		valid_user();
 		
 	  	$email =       			input::post('email');
 		$password =	 	       	input::post('password');

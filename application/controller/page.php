@@ -2,7 +2,7 @@
 class page_controller {
 
 	public function listing($current_page=1, $group='', $sort='asc') {
-		core::valid_user();
+		valid_user();
 	    $members_table = db('users');
 	    $total_members = $members_table->count()->execute();
 
@@ -62,7 +62,7 @@ class page_controller {
 
 public function grouplist($gid='', $current_page=1) {
   
-    core::valid_user();
+    valid_user();
     // @todo sort by letter
     // @todo sort by group
     // @todo sort direction
@@ -101,7 +101,7 @@ public function grouplist($gid='', $current_page=1) {
 
   public function alphabetical($alpha='') {
     
-    core::valid_user();
+    valid_user();
     
     // @todo sort by letter
     $address_table = db('addressbook');
@@ -127,7 +127,7 @@ public function grouplist($gid='', $current_page=1) {
 
   public function groups() {
     
-    core::valid_user();
+    valid_user();
     
     $groups_table = db('groups');
 
@@ -142,7 +142,7 @@ public function grouplist($gid='', $current_page=1) {
 
 
   public function maps($gid=''){
-	core::valid_user();
+	valid_user();
 
    // load::helper('class_geoip');
     //$class_geoip = new geoip();
@@ -160,26 +160,26 @@ public function grouplist($gid='', $current_page=1) {
 
 
   public function export(){
-    core::valid_user();
+    valid_user();
     load::view('page_export');
     }// END Function Export
 
   public function import(){
-    core::valid_user();
+    valid_user();
     
     load::view('page_import');
     }// END Function Import
 
 
   public function members(){
-    core::valid_user();
+    valid_user();
     
     load::view('page_members');
     }// END Function members
 
 
   public function help(){
-   	core::valid_user();
+   	valid_user();
         
     load::view('page_help');
     }// END Function Help
@@ -190,7 +190,7 @@ public function grouplist($gid='', $current_page=1) {
     }// END Function About
 
   public function search() {
-    core::valid_user();
+    valid_user();
 
     $alpha = '';
 

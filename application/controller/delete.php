@@ -1,7 +1,7 @@
 <?php
 class delete_controller {
 	public function action_comment($contactid, $commentid=''){
-	    core::valid_user();
+	    valid_user();
     
 		// Select Comments Table
 		$comment_table = db('comments');
@@ -19,7 +19,7 @@ class delete_controller {
 		
 		
 	public function action_contact($contact_id='') {
-	    core::valid_user();
+	    valid_user();
     
 		// @todo delete all comments attached to the user ID at the same time.
 		$comments_table = db('comments');
@@ -46,7 +46,7 @@ class delete_controller {
 		} // END Function Action Delete
 		
 	public function action_group($group_id='') {
-		core::valid_user();
+		valid_user();
       
 	    // @todo search all contacts with the Group ID and set the GID to #1 for unlisted
 

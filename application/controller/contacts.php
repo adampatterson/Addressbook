@@ -2,7 +2,7 @@
 class contacts_controller {
 	/* View Article Page */
 	public function view($id) {
-	    core::valid_user();
+	    valid_user();
     
 		// Select Database Table
 		$table = db('addressbook');

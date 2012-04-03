@@ -5,7 +5,7 @@
 class admin_controller {
   
 	public function post(){
-	    core::valid_user();  
+	    valid_user();  
 
 		$groups_table = db('groups');				
 		$groups = $groups_table->select('*')
@@ -22,7 +22,7 @@ class admin_controller {
 		}// END Function Post
 	
   public function post_group(){
-    core::valid_user();
+    valid_user();
     
     load::view('post_group');
     }// END Function Post Group
@@ -68,7 +68,7 @@ class admin_controller {
 		
 		
 	public function delete ($contact_id){
-    	core::valid_user();
+    	valid_user();
     
 		$address_table = db('addressbook');
 		
@@ -83,7 +83,7 @@ class admin_controller {
 		
 
 	public function update_comment($contactid, $commentid) {
-    	core::valid_user();
+    	valid_user();
     
 		$comment_table = db('comments');				
 		$comment = $comment_table->select('*')
@@ -99,7 +99,7 @@ class admin_controller {
 
 
 	public function update_group($gid) {
-	    core::valid_user();
+	    valid_user();
     
 	    $group_table = db('groups');        
 	    $group = $group_table->select('*')
@@ -111,7 +111,7 @@ class admin_controller {
 		
 		
 	public function delete_comment($contactid, $commentid) {
-	   	core::valid_user();
+	   	valid_user();
    
 		$comment_table = db('comments');				
 		$comment = $comment_table->select('*')
@@ -124,7 +124,7 @@ class admin_controller {
 		} // END Function Update Comment
 		
   public function delete_group($group_id) {
-    core::valid_user();
+    valid_user();
     
     $groups_table = db('groups');        
     $group = $groups_table->select('*')
@@ -155,7 +155,7 @@ class admin_controller {
 		
 		
 	public function profile(){
-		core::valid_user();
+		valid_user();
 		  
 		load::view('admin_profile'); 
 		} // END Function Profile
@@ -166,7 +166,7 @@ class admin_controller {
     
 		
 	public function settings(){
-		core::valid_user();
+		valid_user();
    
 		load::view('page_settings');
 		} // END Function Settings
