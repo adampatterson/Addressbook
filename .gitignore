@@ -5,3 +5,4 @@
 /.settings
 /_design
 /_resources
+application/config/deployment/db.php

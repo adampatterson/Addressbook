@@ -10,7 +10,11 @@
 
 // Application's Base URL
 // @todo BASE_URL may need some testing in other environments
-define('BASE_URL','http://'.$_SERVER["SERVER_NAME"].'/');
+if ($_SERVER["SERVER_NAME"] == 'localhost') {
+	define('BASE_URL','http://'.$_SERVER["SERVER_NAME"].'/addressbook/' );
+} else {
+	define('BASE_URL','http://'.$_SERVER["SERVER_NAME"].'/' );
+}
 
 define('BASE_IMAGE',BASE_URL.'assets/images/');
 
@@ -38,7 +42,7 @@ define('MAX_FILESIZE',"2400");
 define('MOD_REWRITE',TRUE);
 
 // Turn Debugging On?
-define('DEBUG',FALSE);
+define('DEBUG',TRUE);
 
 // Turn Error Logging On?
 define('ERROR_LOGGING',TRUE);
@@ -59,13 +63,13 @@ date_default_timezone_set('America/New_York');
 config::set('autoload_library',array('db','session','user','url','pagination','benchmark','image','note','email'));
 
 /* Auto Load Helpers */
-config::set('autoload_helper',array('core ')); 
+config::set('autoload_helper',array('core')); 
 
 /* Sessions */
 config::set('session',array(
-  'connection'=>'default',
-  'table'=>'sessions',
-  'cookie'=>array('path'=>'/','expire'=>'+1 hours')
+	'connection'=>'default',
+	'table'=>'sessions',
+	'cookie'=>array('path'=>'/','expire'=>'+1 hours')
 ));
 
 /* Notes */
@@ -86,4 +90,5 @@ config::set('folder_cache','cache');             // Cache
 config::set('folder_languages','language');     // Languages
 config::set('folder_errors','error');           // Errors
 config::set('folder_orm','orm');                // ORM
+
 
