@@ -112,15 +112,7 @@ If any of the tests have failed, consult the documentation for more information 
 			<?php if (is_dir('../storage/') AND is_writable('../storage/')): ?>
 				<td class="pass">/storage/</td>
 			<?php else: $failed = TRUE ?>
-				<td class="fail">The <code>/storeage/</code> directory is not writable.</td>
-			<?php endif ?>
-		</tr>
-		<tr>
-			<th>Cache Directory</th>
-			<?php if (is_dir('../application/cache/') AND is_writable('../application/cache/')): ?>
-				<td class="pass">/application/cache/</td>
-			<?php else: $failed = TRUE ?>
-				<td class="fail">The <code>/application/cache/'</code> directory is not writable.</td>
+				<td class="fail">The <code>/storage/</code> directory is not writable.</td>
 			<?php endif ?>
 		</tr>
 		<tr>

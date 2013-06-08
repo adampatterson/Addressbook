@@ -6,3 +6,4 @@
 /_design
 /_resources
 application/config/deployment/db.php
+/.idea/
