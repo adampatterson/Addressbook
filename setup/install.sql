@@ -4,16 +4,19 @@ CREATE TABLE IF NOT EXISTS `access` (
   PRIMARY KEY (`accessid`)
 );
 
+
 CREATE TABLE IF NOT EXISTS `addressbook` (
   `id` int(9) unsigned NOT NULL AUTO_INCREMENT,
   `gid` int(100) NOT NULL DEFAULT '1',
   `firstname` varchar(255) NOT NULL DEFAULT '',
   `lastname` varchar(255) NOT NULL DEFAULT '',
   `title` varchar(120) NOT NULL,
+  `salutation` varchar(25) DEFAULT NULL,
   `company_name` varchar(120) NOT NULL,
   `address` text NOT NULL,
   `address2` varchar(100) NOT NULL,
   `postalcode` varchar(12) NOT NULL DEFAULT '',
+  `postbox` varchar(100) DEFAULT NULL,
   `city` text NOT NULL,
   `province` text NOT NULL,
   `country` text NOT NULL,
@@ -29,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `addressbook` (
   `password` varchar(125) NOT NULL,
   PRIMARY KEY (`id`)
 );
+
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `commentid` int(11) NOT NULL AUTO_INCREMENT,
