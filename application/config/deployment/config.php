@@ -9,12 +9,24 @@
  */
 
 // Application's Base URL
-// @todo BASE_URL may need some testing in other environments
-if ($_SERVER["SERVER_NAME"] == 'localhost') {
-	define('BASE_URL','http://'.$_SERVER["SERVER_NAME"].'/addressbook/' );
-} else {
-	define('BASE_URL','http://'.$_SERVER["SERVER_NAME"].'/' );
-}
+# Application's Base URL
+if ($_SERVER["SERVER_PORT"] != '80' ):
+    $port = ':'.$_SERVER["SERVER_PORT"];
+else:
+    $port = '';
+endif;
+
+if ( dirname($_SERVER['PHP_SELF'])  == '/' ):
+    $directory = '';
+else:
+    $directory = dirname($_SERVER['PHP_SELF']);
+endif;
+
+define('BASE_URI'      , $_SERVER['REQUEST_URI'].$port );
+
+# @todo BASE_URL may need some testing in other environments
+//define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$port.$directory.'/' );
+define('BASE_URL'      ,'http://'.$_SERVER["SERVER_NAME"].$directory.'/' );
 
 define('BASE_IMAGE',BASE_URL.'assets/images/');
 
