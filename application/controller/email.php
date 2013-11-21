@@ -1,7 +1,7 @@
 <?php
 class email_controller {
 	public function message ($id='') {
-    	core::valid_user();
+    	valid_user();
     
 		// Select Database Table
 		$table = db('addressbook');
